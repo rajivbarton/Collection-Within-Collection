@@ -1,0 +1,31 @@
+<header class="page-header">
+  <h1>{{ collection.title }}</h1>
+</header>
+
+{% unless collection.description == '' %}
+  <p class="lead">{{ collection.description }}</p>
+{% endunless %}
+
+<!-- Collection within collections -->
+{% if collection.handle contains "cwc" %}
+  <div class="row">
+    {% for link in linklists.cwc.links %}
+
+          <div class="col-md-4">
+            <div class="info">
+              <a href="{{ link.url }}">
+                  <h2 class="title">{{ link.title }}</h2>
+                  <img class="img" src="{{ link.object.image.src | img_url: "medium" }}">
+              </a>
+            </div>
+          </div>
+
+    {% endfor %}
+  </div>
+{% else %}
+
+<!-- Display regular collections -->
+  
+  ...regular collection template code goes here
+
+{% endif %}
